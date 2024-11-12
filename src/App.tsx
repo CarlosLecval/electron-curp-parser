@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import * as XLSX from 'xlsx';
+
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -7,10 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import * as XLSX from 'xlsx';
-import toast, { Toaster } from 'react-hot-toast';
-import InvalidCurpsTable from './InvalidCurpsTable';
+
 import { Button } from './components/ui/button';
+import InvalidCurpsTable from './InvalidCurpsTable';
 
 export interface Result {
   row: number;
@@ -119,13 +121,13 @@ export default function App() {
       <div>
         <Toaster />
       </div>
-      <h1 className="text-2xl font-bold mb-4">Validador de CURPs</h1>
+      <h1 className="mb-4 text-2xl font-bold">Validador de CURPs</h1>
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="flex flex-col items-start gap-4">
           <Input type="file" onChange={handleFileChange} accept=".csv,.xlsx,.xls" />
           {columns.length > 0 && (
             <>
-              <div className="flex gap-4 items-center">
+              <div className="flex items-center gap-4">
                 <p>Columna:</p>
                 <Select value={selectedColumn} onValueChange={setSelectedColumn}>
                   <SelectTrigger className="w-[180px]">
